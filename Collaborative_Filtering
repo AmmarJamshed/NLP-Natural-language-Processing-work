@@ -1,0 +1,17 @@
+from surprise import SVD
+from surprise import Dataset
+
+# Load the data
+data = Dataset.load_builtin('ml-100k')
+
+# Use the SVD algorithm
+algo = SVD()
+
+# Train the model
+trainset = data.build_full_trainset()
+algo.fit(trainset)
+
+# Make predictions
+user_id = 1
+item_id = 5
+pred = algo.predict(user_id, item_id)
