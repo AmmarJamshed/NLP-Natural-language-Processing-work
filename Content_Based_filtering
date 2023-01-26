@@ -1,0 +1,16 @@
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Define the content data
+content = ["This is a content about education", "This is a content about technology", "This is a content about healthcare"]
+
+# Create the TF-IDF matrix
+tf = TfidfVectorizer()
+tfidf_matrix = tf.fit_transform(content)
+
+# Compute the cosine similarity matrix
+similarity_matrix = cosine_similarity(tfidf_matrix)
+
+# Make recommendations based on the similarity matrix
+content_id = 0
+similar_content_indices = similarity_matrix[content_id].argsort()[:-5:-1]
